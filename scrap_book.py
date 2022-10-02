@@ -1,9 +1,10 @@
 import csv
-from pprint import pprint
-import requests
 import re
+import os
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
+import requests
+from slugify import slugify
+
 
 # Etape 1 : Extraire les données d'un seul produit :
 # Cette fonction extrait les 10 informations demandées en parsant le code html de la page choisie.
@@ -44,6 +45,7 @@ def donnees_produit(url):
 
     return donnees
 
+
 # Cette fonction modifie certains éléments obtenus.
 def transform_book(donnees):
     donnees["title"] = donnees["title"].split(" | ")[0].replace("\n", "").strip()
@@ -67,9 +69,14 @@ def transform_book(donnees):
     donnees["review_rating"] = review_rating
     return donnees
 
+
 # Charge les informations obtenues dans un fichier csv.
 def load_book(donnees):
-    with open('data.csv', 'w', encoding="utf-8-sig") as fichier_csv:
+    path_category = "all_books/" + donnees["category"]
+    os.makedirs(path_category, exist_ok=True)
+    book_csv = path_category + "/" + slugify(donnees["title"]) + ".csv"
+
+    with open(book_csv, 'w', encoding="utf-8-sig") as fichier_csv:
         writer = csv.DictWriter(fichier_csv, fieldnames=donnees.keys(), delimiter='|')
         writer.writeheader()
         writer.writerow(donnees)
@@ -83,67 +90,13 @@ def scrap_book(url, load = True):
 
     return result
 
-# Etape 2 : Extraire toutes les données des produits d'une catégorie :
-'''Cette fonction nous permet d'obtenir une liste de tous les liens 
-   des livres de la catégorie sur une ou plusieurs pages.'''
-def get_links_category(url_category):
-    url = url_category
-    all_book_links = []
 
-    while True:
-        response = requests.get(url)
-        soup = BeautifulSoup(response.text, "lxml")
-
-        book_links = [link.a['href'] for link in soup.find_all('h3')]
-
-        for i in range(len(book_links)):
-            book_links[i] = book_links[i].replace("../../../", "https://books.toscrape.com/catalogue/")
-
-        all_book_links += book_links
-
-        next_page_element = soup.select_one('li.next > a') # pagination
-
-        if next_page_element:
-            next_page_url = next_page_element.get('href')
-            url = urljoin(url, next_page_url)
-
-        else:
-            break
-
-    return all_book_links
-
-# On charge une liste de dictionnaire dans un fichier csv.
-def scrap_category_books(book_links):
-    books_data = [scrap_book(elm, load=False) for elm in book_links]
-    headers = books_data[0].keys()
-
-    with open('livresc.csv', 'w', encoding="utf-8-sig", newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=headers, delimiter='|')
-        writer.writeheader()
-        for elem in books_data:
-            writer.writerow(elem)
-
-# Ici, on applique la fonction précédente à notre liste contenant les url de tous les livres de la catégorie.
-def scrap_category(url_category):
-    all_links = get_links_category(url_category)
-    scrap_category_books(all_links)
-    return all_links
-
-# Etape 3 : Extraire tous les produits de toutes les catégories :
-def etl_categories(home_url):
-    url = home_url
-    page = requests.get(url)
-    soup = BeautifulSoup(page.content, 'html.parser')
-
-    categories_links = [url + link.get('href') for link in soup.select('div ul li a')[:-1]]
-
-    for category_link in categories_links:
-        scrap_category(category_link)
-
-# Ce code s'éxécute seulement si je fais >>> python missionP2OC.py dans le terminal
 if __name__ == "__main__":
-    home_url = "https://books.toscrape.com/"
-    etl_categories(home_url)
+    url = "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html"
+    scrap_book(url, load=True)
+
+
+
 
 
 
