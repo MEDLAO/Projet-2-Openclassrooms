@@ -1,9 +1,8 @@
 import csv
-from pprint import pprint
 from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
-from scrap_book import donnees_produit, transform_book,load_book, scrap_book
+from scrap_book import *
 import os
 
 
@@ -39,16 +38,27 @@ def get_links_category(url_category):
 
 # On charge une liste de dictionnaire dans un fichier csv.
 def scrap_category_books(book_links):
-    books_data = [scrap_book(elm, load=False) for elm in book_links]
+    books_data = [scrap_book(elm) for elm in book_links]
     headers = books_data[0].keys()
+    for dic in books_data:
+        path_category = "all_books/" + dic["category"]
+        os.makedirs(path_category, exist_ok=True)
+        book_csv = path_category + "/" + slugify(dic["title"]) + ".csv"
 
-    with open('livresc.csv', 'w', encoding="utf-8-sig", newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=headers, delimiter='|')
-        writer.writeheader()
-        for elem in books_data:
-            writer.writerow(elem)
+        with open(book_csv, 'w', encoding="utf-8-sig", newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=headers, delimiter='|')
+            writer.writeheader()
+            writer.writerow(dic)
 
 # Ici, on applique la fonction précédente à notre liste contenant les url de tous les livres de la catégorie.
 def scrap_category(url_category):
     all_links = get_links_category(url_category)
     scrap_category_books(all_links)
+
+
+if __name__ == "__main__":
+    url = "https://books.toscrape.com/catalogue/category/books/fiction_10/index.html"
+    scrap_category(url)
+
+
+

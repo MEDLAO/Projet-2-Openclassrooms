@@ -6,6 +6,7 @@ import requests
 from slugify import slugify
 
 
+
 # Etape 1 : Extraire les données d'un seul produit :
 # Cette fonction extrait les 10 informations demandées en parsant le code html de la page choisie.
 def donnees_produit(url):
@@ -82,18 +83,17 @@ def load_book(donnees):
         writer.writerow(donnees)
 
 # Extrait les informations demandées en prenant en compte les modifications  et les charge dans un fichier csv.
-def scrap_book(url, load = True):
+def scrap_book(url):
     donnees = donnees_produit(url)
     result = transform_book(donnees)
-    if load:
-        load_book(result)
+    load_book(result)
 
     return result
 
 
 if __name__ == "__main__":
     url = "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html"
-    scrap_book(url, load=True)
+    scrap_book(url)
 
 
 
