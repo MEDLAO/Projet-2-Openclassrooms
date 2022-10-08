@@ -7,9 +7,13 @@ from slugify import slugify
 
 
 
-# Etape 1 : Extraire les données d'un seul produit :
-# Cette fonction extrait les 10 informations demandées en parsant le code html de la page choisie.
+# Phase 1 : Extraire les données d'un seul produit :
 def donnees_produit(url):
+    """
+    Cette fonction extrait les 10 informations demandées en parsant le code html de la page choisie.
+    :param url: url du livre choisi.
+    :return: Un dictionnaire contenant les informations du livre choisi.
+    """
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
 
@@ -47,8 +51,12 @@ def donnees_produit(url):
     return donnees
 
 
-# Cette fonction modifie certains éléments obtenus.
 def transform_book(donnees):
+    """
+    Cette fonction rectifie certains éléments obtenus.
+    :param donnees: Le dictionnaire renvoyé par la fonction donnees_produit.
+    :return: Le dictionnaire placé en paramètre avec certaines modifications.
+    """
     donnees["title"] = donnees["title"].split(" | ")[0].replace("\n", "").strip()
 
     donnees["number_available"] = re.sub("\D+", "", donnees["number_available"])
@@ -71,8 +79,12 @@ def transform_book(donnees):
     return donnees
 
 
-# Charge les informations obtenues dans un fichier csv.
 def load_book(donnees):
+    """
+    Charge les informations obtenues dans un fichier csv.
+    :param donnees: Le dictionnaire pour un livre donné.
+    :return: Les données sont chargées dans un fichier csv.
+    """
     path_category = "all_books/" + donnees["category"]
     os.makedirs(path_category, exist_ok=True)
     book_csv = path_category + "/" + slugify(donnees["title"]) + ".csv"
@@ -82,8 +94,14 @@ def load_book(donnees):
         writer.writeheader()
         writer.writerow(donnees)
 
-# Extrait les informations demandées en prenant en compte les modifications  et les charge dans un fichier csv.
+
 def scrap_book(url, load=True):
+    """
+    Extrait les informations demandées en prenant en compte les modifications et les charge dans un fichier csv.
+    :param url: Url du livre.
+    :param load: True ou False.
+    :return: Si load=True alors un fichier csv est créé et les données obtenues y sont chargées.
+    """
     donnees = donnees_produit(url)
     result = transform_book(donnees)
     if load:

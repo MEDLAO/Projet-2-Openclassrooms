@@ -2,8 +2,14 @@ import time
 from scrap_category import *
 
 
-# Etape 3 : Extraire tous les produits de toutes les catégories :
+# Phase 3 et 4 : Extraire tous les produits de toutes les catégories + téléchargement des fichiers images :
 def etl_categories(home_url):
+    """
+    Cette fonction permet d'extraire les données des livres de toutes les catégories du site pour les charger dans
+    différents fichiers csv, et de télécharger les fichiers images de chaque livre dans un dossier approprié.
+    :param home_url: Url du site Books to Scrape.
+    :return: Affiche progressivement un message pour chaque catégorie pendant le scrapping.
+    """
     page = requests.get(home_url)
     soup = BeautifulSoup(page.content, 'html.parser')
 

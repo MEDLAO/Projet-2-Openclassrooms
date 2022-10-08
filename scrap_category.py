@@ -8,10 +8,15 @@ from slugify import slugify
 from scrap_book import scrap_book
 
 
-# Etape 2 : Extraire toutes les données des produits d'une catégorie :
-# Cette fonction nous permet d'obtenir une liste de tous les liens
-# des livres de la catégorie sur une ou plusieurs pages.
+# Phase 2 et 4: Extraire toutes les données des produits d'une catégorie + téléchargement des fichiers images :
+
 def get_links_category(url_category):
+    """
+    Cette fonction nous permet d'obtenir une liste de tous les liens
+    des livres de la catégorie sur une ou plusieurs pages.
+    :param url_category: Url de la catégorie choisie.
+    :return: Retourne la liste des url de tous les livres la catégorie.
+    """
     url = url_category
     all_book_links = []
 
@@ -39,8 +44,12 @@ def get_links_category(url_category):
     return all_book_links
 
 
-# On charge une liste de dictionnaire dans un fichier csv.
 def scrap_category_books(book_links):
+    """
+    On charge une liste de dictionnaire dans un fichier csv et on télécharge les fichiers image dans dossier.
+    :param book_links: la liste des url des livres de la catégorie sans pagination (soit une seul page).
+    :return: rien
+    """
     books_data = [scrap_book(elm, load=False) for elm in book_links]
     headers = books_data[0].keys()
     category_name = books_data[0]["category"]
@@ -66,8 +75,12 @@ def scrap_category_books(book_links):
             writer.writerow(dic)
 
 
-# Ici, on applique la fonction précédente à notre liste contenant les url de tous les livres de la catégorie.
 def scrap_category(url_category):
+    """
+    Ici, on applique la fonction scrap_category_books à notre liste contenant les url de tous les livres de la catégorie.
+    :param url_category: Url de la catégorie.
+    :return: rien
+    """
 
     all_links = get_links_category(url_category)
     scrap_category_books(all_links)
