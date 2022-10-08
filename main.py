@@ -26,8 +26,8 @@ from scrap_all_categories import etl_categories
 # et mettre l'url(d'un livre, d'une catégorie ou du site) correspondant entre "" à la ligne 28 :
 
 if __name__== "__main__":
-    url = "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html"
-    scrap_book(url)
+    url = ""
+    fonction(url)
 
 # Puis lancer dans le terminal python main.py
 
