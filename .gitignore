@@ -4,4 +4,5 @@ all_books/
 test.py
 *.csv
 __pycache__/
+.DS_Store
 

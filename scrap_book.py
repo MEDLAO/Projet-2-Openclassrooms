@@ -83,10 +83,11 @@ def load_book(donnees):
         writer.writerow(donnees)
 
 # Extrait les informations demandées en prenant en compte les modifications  et les charge dans un fichier csv.
-def scrap_book(url):
+def scrap_book(url, load=True):
     donnees = donnees_produit(url)
     result = transform_book(donnees)
-    load_book(result)
+    if load:
+        load_book(result)
 
     return result
 
