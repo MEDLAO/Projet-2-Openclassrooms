@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 from scrap_book import *
 import os
+import urllib.request
 
 
 
@@ -44,11 +45,17 @@ def scrap_category_books(book_links):
         path_category = "all_books/" + dic["category"]
         os.makedirs(path_category, exist_ok=True)
         book_csv = path_category + "/" + slugify(dic["title"]) + ".csv"
+        response = requests.get(dic["image_url"])
+
+        file = open(path_category + "/" + slugify(dic["title"]) + ".jpg", "wb")
+        file.write(response.content)
+        file.close()
 
         with open(book_csv, 'w', encoding="utf-8-sig", newline='') as f:
             writer = csv.DictWriter(f, fieldnames=headers, delimiter='|')
             writer.writeheader()
             writer.writerow(dic)
+
 
 # Ici, on applique la fonction précédente à notre liste contenant les url de tous les livres de la catégorie.
 def scrap_category(url_category):

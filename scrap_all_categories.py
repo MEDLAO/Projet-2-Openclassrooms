@@ -5,7 +5,6 @@ import re
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from scrap_category import *
-
 # Etape 3 : Extraire tous les produits de toutes les catégories :
 def etl_categories(home_url):
     page = requests.get(home_url)
