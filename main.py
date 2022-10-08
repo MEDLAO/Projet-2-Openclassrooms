@@ -16,7 +16,7 @@ from scrap_all_categories import etl_categories
 # review_rating
 # image_url
 
-# Pour extraire les informations concernant un livre choisi et les charger dans un fichier csv, utiliser la fonction scrap_book(url,load=True).
+# Pour extraire les informations concernant un livre choisi et les charger dans un fichier csv, utiliser la fonction scrap_book(url).
 
 # Pour extraire les informations de tous les livres d'une catégorie choisie, les charger dans un fichier csv et télécharger les images des livres, utiliser la fonction scrap_category(url).
 
@@ -26,8 +26,8 @@ from scrap_all_categories import etl_categories
 # et mettre l'url(d'un livre, d'une catégorie ou du site) correspondant entre "" à la ligne 28 :
 
 if __name__== "__main__":
-    url = ""
-    fonction(url)
+    url = "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html"
+    scrap_book(url)
 
 # Puis lancer dans le terminal python main.py
 
