@@ -88,6 +88,14 @@ def load_book(donnees):
     path_category = "all_books/" + donnees["category"]
     os.makedirs(path_category, exist_ok=True)
     book_csv = path_category + "/" + slugify(donnees["title"]) + ".csv"
+    path_images = path_category + "/images"
+    os.makedirs(path_images, exist_ok=True)
+    path_book_image = path_images + "/" + slugify(donnees["title"]) + ".jpg"
+    if not os.path.isfile(path_book_image):
+        response = requests.get(donnees["image_url"])
+        file = open(path_book_image, "wb")
+        file.write(response.content)
+        file.close()
 
     with open(book_csv, 'w', encoding="utf-8-sig") as fichier_csv:
         writer = csv.DictWriter(fichier_csv, fieldnames=donnees.keys(), delimiter='|')
