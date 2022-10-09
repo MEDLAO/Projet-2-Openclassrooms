@@ -2,32 +2,41 @@ from scrap_book import scrap_book
 from scrap_category import scrap_category
 from scrap_all_categories import etl_categories
 
-# Le site dont sont extraites les informations est "Books to Scrape", son url est https://books.toscrape.com/
-# Les informations extraites pour chaque livre sont :
+print("Welcome to Books to Scrap Scrapping !")
 
-# product_page_url
-# universal_ product_code (upc)
-# title
-# price_including_tax
-# price_excluding_tax
-# number_available
-# product_description
-# category
-# review_rating
-# image_url
+while True:
 
-# Pour extraire les informations concernant un livre choisi et les charger dans un fichier csv, utiliser la fonction scrap_book(url).
+    print("Choose an option :")
+    print("1- Scrap a book ")
+    print("2- Scrap a category ")
+    print("3- Scrap the whole website ")
+    print("4- Exit")
 
-# Pour extraire les informations de tous les livres d'une catégorie choisie, les charger dans un fichier csv et télécharger les images des livres, utiliser la fonction scrap_category(url).
+    option = int(input())
 
-# Pour faire de même que la fonction précédente pour toutes les catégories du site, utiliser la fonction etl_categories(url).
+    if option == 1:
+        print("Please provide the url of the book:")
+        url = str(input())
+        scrap_book(url)
+        print("You will find info of the book in the folder all_books.")
 
-# Choisir l'une des trois fonctions et remplacer fonction(url) par le nom de la fonction à la ligne 29
-# et mettre l'url(d'un livre, d'une catégorie ou du site) correspondant entre "" à la ligne 28 :
+    elif option == 2:
+        print("Please provide the url of the category:")
+        url = str(input())
+        scrap_category(url)
+        print("You will find info of all category books in the folder all_books")
 
-if __name__== "__main__":
-    url = ""
-    fonction(url)
+    elif option == 3:
+        print("Please provide the url of Books to scrap:")
+        url = str(input())
+        etl_categories(url)
+        print("You will find info of all website books in the folder all_books")
 
-# Puis lancer dans le terminal python main.py
+    elif option == 4:
+        print("Thank you !")
+        break
+
+    else:
+        print("Please choose a number between 1 and 4.")
+
 
