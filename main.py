@@ -27,9 +27,7 @@ while True:
         print("You will find info of all category books in the folder all_books")
 
     elif option == 3:
-        print("Please provide the url of Books to scrap:")
-        url = str(input())
-        etl_categories(url)
+        etl_categories()
         print("You will find info of all website books in the folder all_books")
 
     elif option == 4:

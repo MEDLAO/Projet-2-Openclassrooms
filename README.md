@@ -14,7 +14,7 @@ la gestion des données à l'aide du processus ETL (extract-transform-load),
 l'objectif de ce projet est de mettre en place un programme (un scraper)
 développé en Python, capable d'extraire un certain nombre
 de données(prix,catégorie,...) à partir d'une librairie
-en ligne Books to Scrape.
+en ligne [Books to Scrape](https://books.toscrape.com/).
 Les informations extraites serviront notamment à une analyse marketing.
 
 ## 2. Configurations compatibles :
@@ -22,8 +22,10 @@ Les informations extraites serviront notamment à une analyse marketing.
 * Python 3.10.7
 * Windows 10
 * Mac
+* Linux
 
 ## 3. Installation du programme :
+Ce programme utilise les librairies Python suivantes :
 
 beautifulsoup4 4.11.1\
 bs4 0.0.1\
@@ -52,10 +54,10 @@ webencodings 0.5.1
 
 1. Ouvrir un terminal (ex: Cygwin pour Windows, le terminal pour Mac) ou dans un IDE (ex: PyCharm).
 2. Télécharger le dossier contenant le projet puis se placer dans ce dossier sur le terminal.
-3. Créer un environnement virtuel avec <b>-m venv <nom de l'environnement></b> (ex: env).
-4. Activer l'environnement virtuel en éxécutant <b>source env/bin/activate</b>  (sur Mac) ou <b>env/Scripts/activate.bat</b> (sur Windows).
-5. Installer les paquets présents dans le fichier requirements.txt avec <b>pip install -r requirements.txt</b> . (Ce fichier se trouve dans le dossier du projet avec main.py) .
-6. Finalement, lancer le script avec <b>python main.py</b> .
+3. Créer un environnement virtuel avec\ <b>-m venv <nom de l'environnement></b> (ex: env).
+4. Activer l'environnement virtuel en éxécutant\ <b>source env/bin/activate</b>  (sur Mac) ou <b>env/Scripts/activate.bat</b> (sur Windows).
+5. Installer les paquets présents dans le fichier requirements.txt avec\ <b>pip install -r requirements.txt</b> . (Ce fichier se trouve dans le dossier du projet avec main.py) .
+6. Finalement, lancer le script avec\ <b>python main.py</b> .
 
 
 ---
