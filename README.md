@@ -54,10 +54,16 @@ webencodings 0.5.1
 
 1. Ouvrir un terminal (ex: Cygwin pour Windows, le terminal pour Mac) ou dans un IDE (ex: PyCharm).
 2. Télécharger le dossier contenant le projet puis se placer dans ce dossier sur le terminal.
-3. Créer un environnement virtuel avec\ <b>-m venv <nom de l'environnement></b> (ex: env).
-4. Activer l'environnement virtuel en éxécutant\ <b>source env/bin/activate</b>  (sur Mac) ou <b>env/Scripts/activate.bat</b> (sur Windows).
-5. Installer les paquets présents dans le fichier requirements.txt avec\ <b>pip install -r requirements.txt</b> . (Ce fichier se trouve dans le dossier du projet avec main.py) .
-6. Finalement, lancer le script avec\ <b>python main.py</b> .
+3. Créer un environnement virtuel avec :
+  > $<b> python -m venv <nom de l'environnement></b> 
+4. Activer l'environnement virtuel en éxécutant :
+  > $ <b>source env/bin/activate</b>  (sur Mac) 
+
+  > $ <b>env/Scripts/activate.bat</b> (sur Windows)
+5. Installer les paquets présents dans le fichier (ce fichier se trouve dans le dossier du projet avec main.py) requirements.txt avec :
+  > $ <b>pip install -r requirements.txt</b> .
+6. Finalement, lancer le script avec
+> $ <b>python main.py</b> .
 
 
 ---

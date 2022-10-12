@@ -7,7 +7,7 @@ def etl_categories():
     """
     Cette fonction permet d'extraire les données des livres de toutes les catégories du site pour les charger dans
     différents fichiers csv, et de télécharger les fichiers images de chaque livre dans un dossier approprié.
-    :param home_url: Url du site Books to Scrape.
+    :param
     :return: Affiche progressivement un message pour chaque catégorie pendant le scrapping.
     """
     home_url = "https://books.toscrape.com/"
