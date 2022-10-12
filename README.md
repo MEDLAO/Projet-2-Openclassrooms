@@ -61,9 +61,9 @@ webencodings 0.5.1
 
   > $ <b>env/Scripts/activate.bat</b> (sur Windows)
 5. Installer les paquets présents dans le fichier (ce fichier se trouve dans le dossier du projet avec main.py) requirements.txt avec :
-  > $ <b>pip install -r requirements.txt</b> .
+  > $ <b>pip install -r requirements.txt</b> 
 6. Finalement, lancer le script avec
-> $ <b>python main.py</b> .
+> $ <b>python main.py</b> 
 
 
 ---
