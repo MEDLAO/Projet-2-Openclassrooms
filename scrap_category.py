@@ -63,7 +63,7 @@ def scrap_category_books(book_links):
         writer.writeheader()
 
     for dic in books_data:
-        path_book_image = path_images + "/" + slugify(dic["title"]) + ".jpg"
+        path_book_image = path_images + "/" + slugify(dic["title"][:25]) + ".jpg"
         if not os.path.isfile(path_book_image):
             response = requests.get(dic["image_url"])
             file = open(path_book_image, "wb")
