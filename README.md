@@ -2,9 +2,9 @@
 
 [**Français**](README-fr.md)
 <p>
-  <img src="pictures/Scraping-online-library-1.png" width="200" height="170" />
-  <img src="pictures/Scraping-online-library-2.png" width="200" height="170" />
-  <img src="pictures/Scraping-online-library-3.png" width="200" height="170" />
+  <img src="pictures/Scraping-online-library-1.png" width="250" height="200" />
+  <img src="pictures/Scraping-online-library-2.png" width="250" height="200" />
+  <img src="pictures/Scraping-online-library-3.png" width="250" height="200" />
 </p>
 
 
@@ -69,7 +69,7 @@ webencodings 0.5.1
   > $ <b>source env/bin/activate</b>  (on Mac) 
 
   > $ <b>env/Scripts/activate.bat</b> (on Windows)
-5. Install the packages present in the requirements.txt file (this file is located in the project
+5. Install the packages present in requirements.txt file (this file is located in the project
 folder with main.py) with:
   > $ <b>pip install -r requirements.txt</b> 
 6. Finally, run the script with
