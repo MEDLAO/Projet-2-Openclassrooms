@@ -2,9 +2,9 @@
 
 [**English**](README.md)
 <p>
-  <img src="pictures/Scraping-online-library-1.png" width="200" height="170" />
-  <img src="pictures/Scraping-online-library-2.png" width="200" height="170" />
-  <img src="pictures/Scraping-online-library-3.png" width="200" height="170" />
+  <img src="pictures/Scraping-online-library-1.png" width="250" height="200" />
+  <img src="pictures/Scraping-online-library-2.png" width="250" height="200" />
+  <img src="pictures/Scraping-online-library-3.png" width="250" height="200" />
 </p>
 
 ### Tables des matières :
